@@ -34,7 +34,7 @@ namespace PipServices.Data.Persistence
             _logger.SetReferences(references);
         }
 
-        public bool IsOpened()
+        public bool IsOpen()
         {
             return _opened;
         }

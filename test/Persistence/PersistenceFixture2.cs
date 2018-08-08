@@ -224,7 +224,7 @@ namespace PipServices.Data.Persistence
         {
             // arrange
             var dummy = await _persistence.CreateAsync(null, _dummy1);
-            var projection = ProjectionParams.FromValues("inner_dummy.description", "content", "key");
+            var projection = ProjectionParams.Parse("inner_dummy.description", "content", "key");
 
             // act
             dynamic result = await _persistence.GetOneByIdAsync(null, "wrong_id", projection);
@@ -237,7 +237,7 @@ namespace PipServices.Data.Persistence
         {
             // arrange
             var dummy = await _persistence.CreateAsync(null, _dummy1);
-            var projection = ProjectionParams.FromValues("inner_dummy.description", "content", "key", "create_time_utc", "dummy_type");
+            var projection = ProjectionParams.Parse("inner_dummy.description", "content", "key", "create_time_utc", "dummy_type");
 
             // act
             dynamic result = await _persistence.GetOneByIdAsync(null, dummy.Id, projection);
@@ -255,7 +255,7 @@ namespace PipServices.Data.Persistence
         {
             // arrange
             var dummy = await _persistence.CreateAsync(null, _dummy1);
-            var projection = ProjectionParams.FromValues("Wrong_Key", "Wrong_Content");
+            var projection = ProjectionParams.Parse("Wrong_Key", "Wrong_Content");
 
             // act
             dynamic result = await _persistence.GetOneByIdAsync(null, dummy.Id, projection);
@@ -295,7 +295,7 @@ namespace PipServices.Data.Persistence
         {
             // arrange
             var dummy = await _persistence.CreateAsync(null, _dummy1);
-            var projection = ProjectionParams.FromValues("id");
+            var projection = ProjectionParams.Parse("id");
 
             // act
             dynamic result = await _persistence.GetOneByIdAsync(null, dummy.Id, projection);
