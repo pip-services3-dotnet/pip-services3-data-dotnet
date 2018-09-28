@@ -8,6 +8,67 @@ using PipServices.Commons.Reflect;
 
 namespace PipServices.Data.Persistence
 {
+    /// <summary>
+    /// Abstract persistence component that stores data in memory
+    /// and implements a number of CRUD operations over data items with unique ids.
+    /// The data items must implement IIdentifiable interface.
+    /// 
+    /// In basic scenarios child classes shall only override getPageByFilter(),
+    /// getListByFilter() or deleteByFilter() operations with specific filter function.
+    /// All other operations can be used out of the box.
+    /// 
+    /// In complex scenarios child classes can implement additional operations by
+    /// accessing cached items via this._items property and calling save() method on updates.
+    /// 
+    /// ### Configuration parameters ###
+    /// 
+    /// options:
+    /// max_page_size:       Maximum number of items returned in a single page (default: 100)
+    /// 
+    /// ### References ###
+    /// 
+    /// - *:logger:*:*:1.0         (optional) ILogger components to pass log messages
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="K"></typeparam>
+    /// <example>
+    /// <code>
+    /// class MyMemoryPersistence: IdentifiableMemoryPersistence<MyData, string> 
+    /// {
+    ///     public MyFilePersistence(string path)
+    ///     {
+    ///         base(MyData.class, new JsonPersister(path));
+    ///         
+    ///     private List<Func<MyData, bool>> ComposeFilter(FilterParams filter)
+    ///     {
+    ///         filter = filter != null ? filter : new FilterParams();
+    ///         String name = filter.getAsNullableString("name");
+    ///         return List<Func<MyData, bool>>() {
+    ///         (item) => {
+    ///         if (name != null && item.name != name)
+    ///             return false;
+    ///         return true;
+    ///         }
+    ///         };
+    ///     }
+    ///     
+    ///     public DataPage<MyData> GetPageByFilter(string correlationId, FilterParams filter, PagingParams paging)
+    ///     {
+    ///         base.GetPageByFilter(correlationId, this.composeFilter(filter), paging, null, null);
+    ///     }
+    /// }
+    /// 
+    /// var persistence = new MyMemoryPersistence("./data/data.json");
+    /// var item = persistence.Create("123", new MyData("1", "ABC"));
+    /// var mydata = persistence.GetPageByFilter(
+    /// "123",
+    /// FilterParams.fromTuples("name", "ABC"),
+    /// null, null, null);
+    /// Console.Out.WriteLine(page.Data);          // Result: { id: "1", name: "ABC" }
+    /// persistence.DeleteById("123", "1");
+    /// ...
+    /// </code>
+    /// </example>
     public class IdentifiableMemoryPersistence<T, K> : MemoryPersistence<T>, IReconfigurable,
         IWriter<T, K>, IGetter<T, K>, ISetter<T>
         where T : IIdentifiable<K>
@@ -15,14 +76,26 @@ namespace PipServices.Data.Persistence
     {
         protected int _maxPageSize = 100;
 
+        /// <summary>
+        /// Creates a new instance of the persistence.
+        /// </summary>
         public IdentifiableMemoryPersistence()
             : this(null, null)
         { }
 
+        /// <summary>
+        /// Creates a new instance of the persistence.
+        /// </summary>
+        /// <param name="loader">(optional) a loader to load items from external datasource.</param>
+        /// <param name="saver">(optional) a saver to save items to external datasource.</param>
         protected IdentifiableMemoryPersistence(ILoader<T> loader, ISaver<T> saver)
             : base(loader, saver)
         { }
 
+        /// <summary>
+        /// Configures component by passing configuration parameters.
+        /// </summary>
+        /// <param name="config">configuration parameters to be set.</param>
         public virtual void Configure(ConfigParams config)
         {
             // Todo: Use connection and auth components
@@ -51,6 +124,16 @@ namespace PipServices.Data.Persistence
             return result;
         }
 
+        /// <summary>
+        /// Gets a page of data items retrieved by a given filter and sorted according to sort parameters.
+        /// 
+        /// This method shall be called by a public getPageByFilter method from child class that
+        /// receives FilterParams and converts them into a filter function.
+        /// </summary>
+        /// <param name="correlationId">(optional) transaction id to trace execution through call chain.</param>
+        /// <param name="matchFunctions">(optional) a filter function to filter items</param>
+        /// <param name="paging">(optional) paging parameters</param>
+        /// <returns>a data page of result by filter.</returns>
         public async Task<DataPage<T>> GetPageByFilterAsync(string correlationId,
             IList<Func<T, bool>> matchFunctions, PagingParams paging)
         {
@@ -78,6 +161,15 @@ namespace PipServices.Data.Persistence
             }
         }
 
+        /// <summary>
+        /// Gets a list of data items retrieved by a given filter and sorted according to sort parameters.
+        /// 
+        /// This method shall be called by a public getListByFilter method from child
+        /// class that receives FilterParams and converts them into a filter function.
+        /// </summary>
+        /// <param name="correlationId">(optional) transaction id to trace execution through call chain.</param>
+        /// <param name="matchFunctions">(optional) a filter function to filter items</param>
+        /// <returns>a data list of results by filter.</returns>
         public async Task<List<T>> GetListByFilterAsync(string correlationId,
             IList<Func<T, bool>> matchFunctions)
         {
@@ -97,6 +189,12 @@ namespace PipServices.Data.Persistence
             }
         }
 
+        /// <summary>
+        /// Gets a list of data items retrieved by given unique ids.
+        /// </summary>
+        /// <param name="correlationId">(optional) transaction id to trace execution through call chain.</param>
+        /// <param name="ids">ids of data items to be retrieved</param>
+        /// <returns>a data list.</returns>
         public async Task<List<T>> GetListByIdsAsync(string correlationId, K[] ids)
         {
             _lock.EnterReadLock();
@@ -115,6 +213,12 @@ namespace PipServices.Data.Persistence
             }
         }
 
+        /// <summary>
+        /// Gets a data item by its unique id.
+        /// </summary>
+        /// <param name="correlationId">(optional) transaction id to trace execution through call chain.</param>
+        /// <param name="id">an id of data item to be retrieved.</param>
+        /// <returns>data item.</returns>
         public Task<T> GetOneByIdAsync(string correlationId, K id)
         {
             _lock.EnterReadLock();
@@ -136,6 +240,15 @@ namespace PipServices.Data.Persistence
             }
         }
 
+        /// <summary>
+        /// Gets a random item from items that match to a given filter.
+        /// 
+        /// This method shall be called by a public getOneRandom method from child class
+        /// that receives FilterParams and converts them into a filter function.
+        /// </summary>
+        /// <param name="correlationId">(optional) transaction id to trace execution through call chain.</param>
+        /// <param name="matchFunctions">(optional) a filter function to filter items.</param>
+        /// <returns>a random item.</returns>
         public async Task<T> GetOneRandomAsync(string correlationId, IList<Func<T, bool>> matchFunctions)
         {
             var filteredItems = Filter(_items, matchFunctions);
@@ -155,6 +268,12 @@ namespace PipServices.Data.Persistence
             return default(T);
         }
 
+        /// <summary>
+        /// Creates a data item.
+        /// </summary>
+        /// <param name="correlationId">(optional) transaction id to trace execution through call chain.</param>
+        /// <param name="item">an item to be created.</param>
+        /// <returns>created item.</returns>
         public async Task<T> CreateAsync(string correlationId, T item)
         {
             var identifiable = item as IStringIdentifiable;
@@ -179,6 +298,12 @@ namespace PipServices.Data.Persistence
             return item;
         }
 
+        /// <summary>
+        /// Sets a data item. If the data item exists it updates it, otherwise it create a new data item.
+        /// </summary>
+        /// <param name="correlationId">(optional) transaction id to trace execution through call chain.</param>
+        /// <param name="item">a item to be set.</param>
+        /// <returns>updated item.</returns>
         public async Task<T> SetAsync(string correlationId, T item)
         {
             var identifiable = item as IStringIdentifiable;
@@ -206,6 +331,12 @@ namespace PipServices.Data.Persistence
             return item;
         }
 
+        /// <summary>
+        /// Updates a data item.
+        /// </summary>
+        /// <param name="correlationId">(optional) transaction id to trace execution through call chain.</param>
+        /// <param name="item">an item to be updated.</param>
+        /// <returns>updated item.</returns>
         public async Task<T> UpdateAsync(string correlationId, T item)
         {
             _lock.EnterWriteLock();
@@ -231,6 +362,12 @@ namespace PipServices.Data.Persistence
             return item;
         }
 
+        /// <summary>
+        /// Deleted a data item by it's unique id.
+        /// </summary>
+        /// <param name="correlationId">(optional) transaction id to trace execution through call chain.</param>
+        /// <param name="id">an id of the item to be deleted</param>
+        /// <returns>deleted item.</returns>
         public async Task<T> DeleteByIdAsync(string correlationId, K id)
         {
             _lock.EnterWriteLock();
@@ -258,6 +395,14 @@ namespace PipServices.Data.Persistence
             return await Task.FromResult(item);
         }
 
+        /// <summary>
+        /// Deletes data items that match to a given filter.
+        /// 
+        /// This method shall be called by a public deleteByFilter method from child
+        /// class that receives FilterParams and converts them into a filter function.
+        /// </summary>
+        /// <param name="correlationId">(optional) transaction id to trace execution through call chain.</param>
+        /// <param name="matchFunctions">(optional) a filter function to filter items.</param>
         public async Task DeleteByFilterAsync(string correlationId, IList<Func<T, bool>> matchFunctions)
         {
             var deleted = false;
@@ -285,6 +430,11 @@ namespace PipServices.Data.Persistence
                 await SaveAsync(correlationId);
         }
 
+        /// <summary>
+        /// Deletes multiple data items by their unique ids.
+        /// </summary>
+        /// <param name="correlationId">(optional) transaction id to trace execution through call chain.</param>
+        /// <param name="ids">ids of data items to be deleted.</param>
         public async Task DeleteByIdsAsync(string correlationId, K[] ids)
         {
             var deleted = false;

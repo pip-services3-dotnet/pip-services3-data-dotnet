@@ -1,0 +1,7 @@
+var searchData=
+[
+  ['clearasync',['ClearAsync',['../class_pip_services_1_1_data_1_1_persistence_1_1_memory_persistence.html#a879d6637408b87f41d4f74d72009aedb',1,'PipServices::Data::Persistence::MemoryPersistence']]],
+  ['closeasync',['CloseAsync',['../class_pip_services_1_1_data_1_1_persistence_1_1_memory_persistence.html#a11b82a722c6edd9709298f93c2bfdbac',1,'PipServices::Data::Persistence::MemoryPersistence']]],
+  ['configure',['Configure',['../class_pip_services_1_1_data_1_1_persistence_1_1_file_persistence.html#a7ce3784fb0bc1b1cea6ff573ef666058',1,'PipServices.Data.Persistence.FilePersistence.Configure()'],['../class_pip_services_1_1_data_1_1_persistence_1_1_identifiable_file_persistence.html#a445de849479015f56ce6154e3ecfe56f',1,'PipServices.Data.Persistence.IdentifiableFilePersistence.Configure()'],['../class_pip_services_1_1_data_1_1_persistence_1_1_identifiable_memory_persistence.html#aee8493139ea854cc237459f56e11db3b',1,'PipServices.Data.Persistence.IdentifiableMemoryPersistence.Configure()'],['../class_pip_services_1_1_data_1_1_persistence_1_1_json_file_persister.html#a90d80a829437172be2c8f07c64cffaf0',1,'PipServices.Data.Persistence.JsonFilePersister.Configure()']]],
+  ['createasync',['CreateAsync',['../interface_pip_services_1_1_data_1_1_i_writer.html#aabbab3e9ea56f0494d50f9934a4936b4',1,'PipServices.Data.IWriter.CreateAsync()'],['../class_pip_services_1_1_data_1_1_persistence_1_1_identifiable_memory_persistence.html#a442d71d2d9e2fc42f189473e272897c7',1,'PipServices.Data.Persistence.IdentifiableMemoryPersistence.CreateAsync()']]]
+];
