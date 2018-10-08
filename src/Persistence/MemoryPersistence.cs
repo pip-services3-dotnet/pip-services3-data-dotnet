@@ -13,7 +13,7 @@ namespace PipServices.Data.Persistence
     /// This is the most basic persistence component that is only
     /// able to store data items of any type.Specific CRUD operations
     /// over the data items must be implemented in child classes by
-    /// accessing this._items property and calling save() method.
+    /// accessing <c>this._items</c> property and calling <c>Save()</c> method.
     /// 
     /// The component supports loading and saving items from another data source.
     /// That allows to use it as a base class for file and other types
@@ -21,7 +21,7 @@ namespace PipServices.Data.Persistence
     /// 
     /// ### References ###
     /// 
-    /// - *:logger:*:*:1.0         (optional) ILogger components to pass log messages
+    /// - *:logger:*:*:1.0         (optional) <a href="https://rawgit.com/pip-services-dotnet/pip-services-components-dotnet/master/doc/api/interface_pip_services_1_1_components_1_1_log_1_1_i_logger.html">ILogger</a> components to pass log messages
     /// </summary>
     /// <typeparam name="T">the class type</typeparam>
     /// <example>

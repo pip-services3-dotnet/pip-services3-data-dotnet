@@ -13,21 +13,21 @@ namespace PipServices.Data.Persistence
     /// and implements a number of CRUD operations over data items with unique ids.
     /// The data items must implement IIdentifiable interface.
     /// 
-    /// In basic scenarios child classes shall only override getPageByFilter(),
-    /// getListByFilter() or deleteByFilter() operations with specific filter function.
+    /// In basic scenarios child classes shall only override <c>GetPageByFilter()</c>,
+    /// <c>GetListByFilter()</c> or <c>DeleteByFilter()</c> operations with specific filter function.
     /// All other operations can be used out of the box.
     /// 
     /// In complex scenarios child classes can implement additional operations by
-    /// accessing cached items via this._items property and calling save() method on updates.
+    /// accessing cached items via <c>this._items</c> property and calling <c>Save()</c> method on updates.
     /// 
     /// ### Configuration parameters ###
     /// 
     /// options:
-    /// max_page_size:       Maximum number of items returned in a single page (default: 100)
+    /// - max_page_size:       Maximum number of items returned in a single page (default: 100)
     /// 
     /// ### References ###
     /// 
-    /// - *:logger:*:*:1.0         (optional) ILogger components to pass log messages
+    /// - *:logger:*:*:1.0         (optional) <a href="https://rawgit.com/pip-services-dotnet/pip-services-components-dotnet/master/doc/api/interface_pip_services_1_1_components_1_1_log_1_1_i_logger.html">ILogger</a> components to pass log messages
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <typeparam name="K"></typeparam>

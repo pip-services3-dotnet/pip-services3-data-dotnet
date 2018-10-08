@@ -169,10 +169,12 @@ Additional Inherited Members</h2></td></tr>
 <div class="textblock"><p>Abstract persistence component that stores data in flat files and caches them in memory. </p>
 <p>This is the most basic persistence component that is only able to store data items of any type.Specific CRUD operations over the data items must be implemented in child classes by accessing this._items property and calling Save() method.</p>
 <h3>Configuration parameters</h3>
-<p>path: path to the file where data is stored</p>
+<ul>
+<li>path: path to the file where data is stored</li>
+</ul>
 <h3>References</h3>
 <ul>
-<li>*:logger:*:*:1.0 (optional) ILogger components to pass log messages </li>
+<li>*:logger:*:*:1.0 (optional) <a href="https://rawgit.com/pip-services-dotnet/pip-services-components-dotnet/master/doc/api/interface_pip_services_1_1_components_1_1_log_1_1_i_logger.html">ILogger</a> components to pass log messages </li>
 </ul>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">

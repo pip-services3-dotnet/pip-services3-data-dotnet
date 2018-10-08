@@ -226,13 +226,15 @@ List&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>Filter</b>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Abstract persistence component that stores data in memory and implements a number of CRUD operations over data items with unique ids. The data items must implement IIdentifiable interface. </p>
-<p>In basic scenarios child classes shall only override getPageByFilter(), getListByFilter() or deleteByFilter() operations with specific filter function. All other operations can be used out of the box.</p>
-<p>In complex scenarios child classes can implement additional operations by accessing cached items via this._items property and calling save() method on updates.</p>
+<p>In basic scenarios child classes shall only override <code>GetPageByFilter()</code>, <code>GetListByFilter()</code> or <code>DeleteByFilter()</code> operations with specific filter function. All other operations can be used out of the box.</p>
+<p>In complex scenarios child classes can implement additional operations by accessing cached items via <code>this._items</code> property and calling <code>Save()</code> method on updates.</p>
 <h3>Configuration parameters</h3>
-<p>options: max_page_size: Maximum number of items returned in a single page (default: 100)</p>
+<p>options:</p><ul>
+<li>max_page_size: Maximum number of items returned in a single page (default: 100)</li>
+</ul>
 <h3>References</h3>
 <ul>
-<li>*:logger:*:*:1.0 (optional) ILogger components to pass log messages </li>
+<li>*:logger:*:*:1.0 (optional) <a href="https://rawgit.com/pip-services-dotnet/pip-services-components-dotnet/master/doc/api/interface_pip_services_1_1_components_1_1_log_1_1_i_logger.html">ILogger</a> components to pass log messages </li>
 </ul>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">

@@ -13,11 +13,11 @@ namespace PipServices.Data.Persistence
     /// 
     /// ### Configuration parameters ###
     /// 
-    /// path:                path to the file where data is stored
+    /// - path:                path to the file where data is stored
     /// 
     /// ### References ###
     /// 
-    /// - *:logger:*:*:1.0   (optional) ILogger components to pass log messages
+    /// - *:logger:*:*:1.0   (optional) <a href="https://rawgit.com/pip-services-dotnet/pip-services-components-dotnet/master/doc/api/interface_pip_services_1_1_components_1_1_log_1_1_i_logger.html">ILogger</a> components to pass log messages
     /// </summary>
     /// <typeparam name="T">the class type</typeparam>
     /// <example>
