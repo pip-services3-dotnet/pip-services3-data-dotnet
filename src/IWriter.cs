@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace PipServices.Data
+namespace PipServices3.Data
 {
     /// <summary>
     /// Interface for data processing components that can create, update and delete data items.

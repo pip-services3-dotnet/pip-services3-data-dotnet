@@ -1,7 +1,7 @@
-﻿using PipServices.Commons.Config;
-using PipServices.Commons.Data;
+﻿using PipServices3.Commons.Config;
+using PipServices3.Commons.Data;
 
-namespace PipServices.Data.Persistence
+namespace PipServices3.Data.Persistence
 {
     /// <summary>
     /// Abstract persistence component that stores data in flat files
@@ -24,7 +24,7 @@ namespace PipServices.Data.Persistence
     /// 
     /// ### References ###
     /// 
-    /// - *:logger:*:*:1.0         (optional) <a href="https://rawgit.com/pip-services-dotnet/pip-services-components-dotnet/master/doc/api/interface_pip_services_1_1_components_1_1_log_1_1_i_logger.html">ILogger</a> components to pass log messages
+    /// - *:logger:*:*:1.0         (optional) <a href="https://rawgit.com/pip-services3-dotnet/pip-services3-components-dotnet/master/doc/api/interface_pip_services_1_1_components_1_1_log_1_1_i_logger.html">ILogger</a> components to pass log messages
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <typeparam name="K"></typeparam>

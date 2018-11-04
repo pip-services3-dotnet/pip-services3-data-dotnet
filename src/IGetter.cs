@@ -1,8 +1,8 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using PipServices.Commons.Data;
+using PipServices3.Commons.Data;
 
-namespace PipServices.Data
+namespace PipServices3.Data
 {
     /// <summary>
     /// Interface for data processing components that can get data items.

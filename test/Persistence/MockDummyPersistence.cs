@@ -2,10 +2,10 @@
 //using System.Collections.Generic;
 //using System.Threading.Tasks;
 
-//using PipServices.Commons.Data;
-//using PipServices.Data.Persistence;
+//using PipServices3.Commons.Data;
+//using PipServices3.Data.Persistence;
 
-//namespace PipServices.Data.Persistence
+//namespace PipServices3.Data.Persistence
 //{
 //    public class MockDummyPersistence : AbstractMockDbPersistence<Dummy>, IDummyPersistence
 //    {

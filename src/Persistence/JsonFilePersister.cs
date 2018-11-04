@@ -4,12 +4,12 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using PipServices.Commons.Config;
-using PipServices.Commons.Errors;
-using PipServices.Commons.Refer;
-using PipServices.Components.Log;
+using PipServices3.Commons.Config;
+using PipServices3.Commons.Errors;
+using PipServices3.Commons.Refer;
+using PipServices3.Components.Log;
 
-namespace PipServices.Data.Persistence
+namespace PipServices3.Data.Persistence
 {
     /// <summary>
     /// Persistence component that loads and saves data from/to flat file.

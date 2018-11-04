@@ -11,5 +11,5 @@ Install-Package Pip.Services.Data
 Source code can be checked out from github repository:
 
 ```bash
-git clone git@github.com:pip-services/pip-services-data-dotnet.git
+git clone git@github.com:pip-services3/pip-services3-data-dotnet.git
 ```

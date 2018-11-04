@@ -4,8 +4,8 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
 
     <IsPackable>false</IsPackable>
-    <RootNamespace>PipServices.Data</RootNamespace>
-    <AssemblyName>PipServices.Data.Test</AssemblyName>
+    <RootNamespace>PipServices3.Data</RootNamespace>
+    <AssemblyName>PipServices3.Data.Test</AssemblyName>
     <ApplicationIcon />
     <OutputType>Library</OutputType>
     <StartupObject />

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-using PipServices.Commons.Data;
+using PipServices3.Commons.Data;
 
-namespace PipServices.Data.Persistence
+namespace PipServices3.Data.Persistence
 {
     public enum DummyType : int
     {

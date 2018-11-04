@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using PipServices.Commons.Data;
+using PipServices3.Commons.Data;
 using System.Threading.Tasks;
 
-namespace PipServices.Data
+namespace PipServices3.Data
 {
     /// <summary>
     /// Interface for data processing components that can retrieve a list of data items by filter.

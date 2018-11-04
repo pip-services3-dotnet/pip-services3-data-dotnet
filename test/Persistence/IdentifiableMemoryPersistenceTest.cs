@@ -1,8 +1,8 @@
 ﻿using System.Threading;
-using PipServices.Commons.Config;
+using PipServices3.Commons.Config;
 using Xunit;
 
-namespace PipServices.Data.Persistence
+namespace PipServices3.Data.Persistence
 {
     public sealed class IdentifiableMemoryPersistenceTest
     {

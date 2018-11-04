@@ -1,7 +1,7 @@
-﻿using PipServices.Commons.Data;
+﻿using PipServices3.Commons.Data;
 using System.Threading.Tasks;
 
-namespace PipServices.Data
+namespace PipServices3.Data
 {
     /// <summary>
     /// Interface for data processing components that can query a page of data items.

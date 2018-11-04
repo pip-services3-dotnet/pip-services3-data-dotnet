@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using PipServices.Commons.Data;
-using PipServices.Commons.Refer;
-using PipServices.Commons.Config;
-using PipServices.Commons.Run;
+using PipServices3.Commons.Data;
+using PipServices3.Commons.Refer;
+using PipServices3.Commons.Config;
+using PipServices3.Commons.Run;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace PipServices.Data.Persistence
+namespace PipServices3.Data.Persistence
 {
     public class PersistenceFixture
     {

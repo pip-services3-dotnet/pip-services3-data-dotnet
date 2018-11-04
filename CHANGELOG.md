@@ -9,7 +9,7 @@
 ## <a name="2.3.0"></a> 2.2.0 (2018-03-26)
 
 ### Breaking Changes
-* Deprecated MongoDb to PipServices.Oss
+* Deprecated MongoDb to PipServices3.Oss
 
 ## <a name="2.2.0-2.2.1"></a> 2.2.0-2.2.1 (2018-01-31)
 * Updated reference to MongoDB Driver 2.5.0
@@ -21,7 +21,7 @@
 ## <a name="2.0.0-2.0.3"></a> 2.0.0-2.0.3 (2017-06-12)
 
 ### Breaking Changes
-* Migrated to pip-services-commons 2.0
+* Migrated to pip-services3-commons 2.0
 * Separated **Persistence** and **IdentifiablePersistence** classes
 
 ## <a name="1.0.1-1.0.11"></a> 1.0.1-1.0.11 (2017-01-07)

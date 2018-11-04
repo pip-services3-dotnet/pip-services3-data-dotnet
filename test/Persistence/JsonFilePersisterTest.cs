@@ -1,8 +1,8 @@
-﻿using PipServices.Commons.Errors;
-using PipServices.Commons.Config;
+﻿using PipServices3.Commons.Errors;
+using PipServices3.Commons.Config;
 using Xunit;
 
-namespace PipServices.Data.Persistence
+namespace PipServices3.Data.Persistence
 {
     public sealed class JsonFilePersisterTest
     {

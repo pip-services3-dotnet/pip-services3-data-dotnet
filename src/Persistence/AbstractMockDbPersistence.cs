@@ -1,4 +1,4 @@
-﻿using PipServices.Commons.Data;
+﻿using PipServices3.Commons.Data;
 
 using System;
 using System.Collections;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
-namespace PipServices.Data.Persistence
+namespace PipServices3.Data.Persistence
 {
     /// <summary>
     /// Abstract Mock DB Persistence (keep data in memory) with ability to test basic projections

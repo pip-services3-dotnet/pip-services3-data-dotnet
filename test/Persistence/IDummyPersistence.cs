@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-using PipServices.Commons.Data;
+using PipServices3.Commons.Data;
 
-namespace PipServices.Data.Persistence
+namespace PipServices3.Data.Persistence
 {
     public interface IDummyPersistence
     {

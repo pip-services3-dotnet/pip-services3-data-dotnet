@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using PipServices.Commons.Refer;
-using PipServices.Commons.Run;
-using PipServices.Components.Log;
+using PipServices3.Commons.Refer;
+using PipServices3.Commons.Run;
+using PipServices3.Components.Log;
 
-namespace PipServices.Data.Persistence
+namespace PipServices3.Data.Persistence
 {
     /// <summary>
     /// Abstract persistence component that stores data in memory.
@@ -21,7 +21,7 @@ namespace PipServices.Data.Persistence
     /// 
     /// ### References ###
     /// 
-    /// - *:logger:*:*:1.0         (optional) <a href="https://rawgit.com/pip-services-dotnet/pip-services-components-dotnet/master/doc/api/interface_pip_services_1_1_components_1_1_log_1_1_i_logger.html">ILogger</a> components to pass log messages
+    /// - *:logger:*:*:1.0         (optional) <a href="https://rawgit.com/pip-services3-dotnet/pip-services3-components-dotnet/master/doc/api/interface_pip_services_1_1_components_1_1_log_1_1_i_logger.html">ILogger</a> components to pass log messages
     /// </summary>
     /// <typeparam name="T">the class type</typeparam>
     /// <example>
