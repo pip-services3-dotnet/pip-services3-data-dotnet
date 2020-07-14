@@ -18,11 +18,6 @@ namespace PipServices3.Data.Persistence
     /// In complex scenarios child classes can implement additional operations by
     /// accessing cached items via <c>this._items</c> property and calling <c>Save()</c> method on updates.
     /// 
-    /// ### Configuration parameters ###
-    /// 
-    /// options:
-    /// - max_page_size:       Maximum number of items returned in a single page (default: 100)
-    /// 
     /// ### References ###
     /// 
     /// - *:logger:*:*:1.0         (optional) <a href="https://rawgit.com/pip-services3-dotnet/pip-services3-components-dotnet/master/doc/api/interface_pip_services_1_1_components_1_1_log_1_1_i_logger.html">ILogger</a> components to pass log messages

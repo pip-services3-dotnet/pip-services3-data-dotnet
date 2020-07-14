@@ -23,6 +23,11 @@ namespace PipServices3.Data.Persistence
     /// That allows to use it as a base class for file and other types
     /// of persistence components that cache all data in memory.
     /// 
+    /// ### Configuration parameters ###
+    /// 
+    /// options:
+    /// - max_page_size:       Maximum number of items returned in a single page (default: 100)
+    /// 
     /// ### References ###
     /// 
     /// - *:logger:*:*:1.0         (optional) <a href="https://rawgit.com/pip-services3-dotnet/pip-services3-components-dotnet/master/doc/api/interface_pip_services_1_1_components_1_1_log_1_1_i_logger.html">ILogger</a> components to pass log messages
