@@ -1,6 +1,6 @@
 # Data processing and persistence components for Pip.Services in .NET Changelog
 
-## <a name="3.2.0-3.2.1"></a> 3.2.0-3.2.1 (2020-07-14)
+## <a name="3.2.0-3.2.2"></a> 3.2.0-3.2.2 (2020-07-14)
 
 ### Features
 * Moved some CRUD operations from IndentifiableMemoryPersistence to MemoryPersistence

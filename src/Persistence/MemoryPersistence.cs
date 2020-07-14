@@ -321,6 +321,32 @@ namespace PipServices3.Data.Persistence
         }
 
         /// <summary>
+        /// Creates a data item.
+        /// </summary>
+        /// <param name="correlationId">(optional) transaction id to trace execution through call chain.</param>
+        /// <param name="item">an item to be created.</param>
+        /// <returns>created item.</returns>
+        public virtual async Task<T> CreateAsync(string correlationId, T item)
+        {
+            _lock.EnterWriteLock();
+
+            try
+            {
+                _items.Add(item);
+
+                _logger.Trace(correlationId, "Created {0}", item);
+            }
+            finally
+            {
+                _lock.ExitWriteLock();
+            }
+
+            await SaveAsync(correlationId);
+
+            return item;
+        }
+
+        /// <summary>
         /// Deletes data items that match to a given filter.
         /// 
         /// This method shall be called by a public deleteByFilter method from child

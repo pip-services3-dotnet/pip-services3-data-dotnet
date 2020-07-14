@@ -140,28 +140,13 @@ namespace PipServices3.Data.Persistence
         /// <param name="correlationId">(optional) transaction id to trace execution through call chain.</param>
         /// <param name="item">an item to be created.</param>
         /// <returns>created item.</returns>
-        public async Task<T> CreateAsync(string correlationId, T item)
+        public override async Task<T> CreateAsync(string correlationId, T item)
         {
             var identifiable = item as IStringIdentifiable;
             if (identifiable != null && item.Id == null)
                 ObjectWriter.SetProperty(item, nameof(item.Id), IdGenerator.NextLong());
 
-            _lock.EnterWriteLock();
-
-            try
-            {
-                _items.Add(item);
-
-                _logger.Trace(correlationId, "Created {0}", item);
-            }
-            finally
-            {
-                _lock.ExitWriteLock();
-            }
-
-            await SaveAsync(correlationId);
-
-            return item;
+            return await base.CreateAsync(correlationId, item);
         }
 
         /// <summary>
