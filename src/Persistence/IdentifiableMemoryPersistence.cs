@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using PipServices3.Commons.Config;
 using PipServices3.Commons.Data;
 using PipServices3.Commons.Reflect;
 
@@ -69,12 +67,10 @@ namespace PipServices3.Data.Persistence
     /// ...
     /// </code>
     /// </example>
-    public class IdentifiableMemoryPersistence<T, K> : MemoryPersistence<T>, IReconfigurable,
-        IWriter<T, K>, IGetter<T, K>, ISetter<T>
+    public class IdentifiableMemoryPersistence<T, K> : MemoryPersistence<T>, IWriter<T, K>, IGetter<T, K>, ISetter<T>
         where T : IIdentifiable<K>
         where K : class
     {
-        protected int _maxPageSize = 100;
 
         /// <summary>
         /// Creates a new instance of the persistence.
@@ -93,103 +89,6 @@ namespace PipServices3.Data.Persistence
         { }
 
         /// <summary>
-        /// Configures component by passing configuration parameters.
-        /// </summary>
-        /// <param name="config">configuration parameters to be set.</param>
-        public virtual void Configure(ConfigParams config)
-        {
-            // Todo: Use connection and auth components
-            _maxPageSize = config.GetAsIntegerWithDefault("max_page_size", _maxPageSize);
-        }
-
-        private List<T> Filter(IList<T> items, IList<Func<T, bool>> matchFunctions)
-        {
-            var result = new List<T>();
-
-            foreach (var item in items)
-            {
-                var isMatched = true;
-
-                foreach (var matchFunction in matchFunctions)
-                {
-                    isMatched &= matchFunction(item);
-                }
-
-                if (isMatched)
-                {
-                    result.Add(item);
-                }
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// Gets a page of data items retrieved by a given filter and sorted according to sort parameters.
-        /// 
-        /// This method shall be called by a public getPageByFilter method from child class that
-        /// receives FilterParams and converts them into a filter function.
-        /// </summary>
-        /// <param name="correlationId">(optional) transaction id to trace execution through call chain.</param>
-        /// <param name="matchFunctions">(optional) a filter function to filter items</param>
-        /// <param name="paging">(optional) paging parameters</param>
-        /// <returns>a data page of result by filter.</returns>
-        public async Task<DataPage<T>> GetPageByFilterAsync(string correlationId,
-            IList<Func<T, bool>> matchFunctions, PagingParams paging)
-        {
-            _lock.EnterReadLock();
-
-            try
-            {
-                var filteredItems = Filter(_items, matchFunctions);
-
-                paging = paging ?? new PagingParams();
-                var skip = paging.GetSkip(0);
-                var take = paging.GetTake(_maxPageSize);
-
-                _logger.Trace(correlationId, $"Retrieved {filteredItems.Count} items");
-
-                return await Task.FromResult(new DataPage<T>()
-                {
-                    Data = filteredItems.Take((int)take).Skip((int)skip).ToList(),
-                    Total = paging.Total ? filteredItems.Count : (long?)null
-                });
-            }
-            finally
-            {
-                _lock.ExitReadLock();
-            }
-        }
-
-        /// <summary>
-        /// Gets a list of data items retrieved by a given filter and sorted according to sort parameters.
-        /// 
-        /// This method shall be called by a public getListByFilter method from child
-        /// class that receives FilterParams and converts them into a filter function.
-        /// </summary>
-        /// <param name="correlationId">(optional) transaction id to trace execution through call chain.</param>
-        /// <param name="matchFunctions">(optional) a filter function to filter items</param>
-        /// <returns>a data list of results by filter.</returns>
-        public async Task<List<T>> GetListByFilterAsync(string correlationId,
-            IList<Func<T, bool>> matchFunctions)
-        {
-            _lock.EnterReadLock();
-
-            try
-            {
-                var filteredItems = Filter(_items, matchFunctions);
-
-                _logger.Trace(correlationId, $"Retrieved {filteredItems.Count} items");
-
-                return await Task.FromResult(filteredItems);
-            }
-            finally
-            {
-                _lock.ExitReadLock();
-            }
-        }
-
-        /// <summary>
         /// Gets a list of data items retrieved by given unique ids.
         /// </summary>
         /// <param name="correlationId">(optional) transaction id to trace execution through call chain.</param>
@@ -201,7 +100,7 @@ namespace PipServices3.Data.Persistence
 
             try
             {
-               var filteredItems = _items.FindAll(x => ids.Contains(x.Id));
+                var filteredItems = _items.FindAll(x => ids.Contains(x.Id));
 
                 _logger.Trace(correlationId, $"Retrieved {filteredItems.Count} items");
 
@@ -238,34 +137,6 @@ namespace PipServices3.Data.Persistence
             {
                 _lock.ExitReadLock();
             }
-        }
-
-        /// <summary>
-        /// Gets a random item from items that match to a given filter.
-        /// 
-        /// This method shall be called by a public getOneRandom method from child class
-        /// that receives FilterParams and converts them into a filter function.
-        /// </summary>
-        /// <param name="correlationId">(optional) transaction id to trace execution through call chain.</param>
-        /// <param name="matchFunctions">(optional) a filter function to filter items.</param>
-        /// <returns>a random item.</returns>
-        public async Task<T> GetOneRandomAsync(string correlationId, IList<Func<T, bool>> matchFunctions)
-        {
-            var filteredItems = Filter(_items, matchFunctions);
-
-            if (filteredItems.Count > 0)
-            {
-                var randomIndex = new Random().Next(0, filteredItems.Count - 1);
-                var result = filteredItems[randomIndex];
-
-                _logger.Trace(correlationId, "Retrieved randomly {0}", result);
-
-                return await Task.FromResult(result);
-            }
-
-            _logger.Trace(correlationId, "Cannot randomnly find item by filter");
-
-            return default(T);
         }
 
         /// <summary>
@@ -393,41 +264,6 @@ namespace PipServices3.Data.Persistence
             await SaveAsync(correlationId);
 
             return await Task.FromResult(item);
-        }
-
-        /// <summary>
-        /// Deletes data items that match to a given filter.
-        /// 
-        /// This method shall be called by a public deleteByFilter method from child
-        /// class that receives FilterParams and converts them into a filter function.
-        /// </summary>
-        /// <param name="correlationId">(optional) transaction id to trace execution through call chain.</param>
-        /// <param name="matchFunctions">(optional) a filter function to filter items.</param>
-        public async Task DeleteByFilterAsync(string correlationId, IList<Func<T, bool>> matchFunctions)
-        {
-            var deleted = false;
-
-            _lock.EnterWriteLock();
-
-            try
-            {
-                var filteredItems = Filter(_items, matchFunctions);
-                deleted = filteredItems.Count > 0;
-
-                foreach (var item in filteredItems)
-                {
-                    _items.Remove(item);
-                }
-
-                _logger.Trace(correlationId, $"Deleted {filteredItems.Count} items");
-            }
-            finally
-            {
-                _lock.ExitWriteLock();
-            }
-
-            if (deleted)
-                await SaveAsync(correlationId);
         }
 
         /// <summary>
