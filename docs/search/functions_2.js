@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['filepersistence',['FilePersistence',['../class_pip_services_1_1_data_1_1_persistence_1_1_file_persistence.html#acf01964d561bcbb5f1795ce1dc066240',1,'PipServices3.Data.Persistence.FilePersistence.FilePersistence(JsonFilePersister&lt; T &gt; persister)'],['../class_pip_services_1_1_data_1_1_persistence_1_1_file_persistence.html#a435cab710dfe691c2718333446a6a8fc',1,'PipServices3.Data.Persistence.FilePersistence.FilePersistence()']]]
+  ['filepersistence',['FilePersistence',['../class_pip_services3_1_1_data_1_1_persistence_1_1_file_persistence.html#a84214a8da9b4baa7863db0a7583f907c',1,'PipServices3.Data.Persistence.FilePersistence.FilePersistence(JsonFilePersister&lt; T &gt; persister)'],['../class_pip_services3_1_1_data_1_1_persistence_1_1_file_persistence.html#a24fafdcf50f029fe288e05afebc1eab4',1,'PipServices3.Data.Persistence.FilePersistence.FilePersistence()']]]
 ];
