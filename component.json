@@ -1,6 +1,6 @@
 {
-    "name": "pip-services3-data",
+    "name": "pip-services3-data-dotnet",
     "registry": "pipdevs",
     "version": "3.2.2",
-    "build": "0"
+    "build": 0
 }
