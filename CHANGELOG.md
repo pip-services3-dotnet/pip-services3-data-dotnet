@@ -1,5 +1,10 @@
 # <img src="https://github.com/pip-services/pip-services/raw/master/design/Logo.png" alt="Pip.Services Logo" style="max-width:30%"> <br/> Data processing and persistence components for .NET Changelog
 
+## <a name="3.3.0"></a> 3.3.0 (2021-06-11) 
+
+### Features
+* Updated references as PipServices3.Components have got minor changes
+
 ## <a name="3.2.0-3.2.2"></a> 3.2.0-3.2.2 (2020-07-14)
 
 ### Features

@@ -6,7 +6,7 @@
     <AssemblyName>PipServices3.Data</AssemblyName>
     <ApplicationIcon />
     <Win32Resource />
-    <Version>3.2.2</Version>
+    <Version>3.3.0</Version>
     <Authors>Sergey Seroukhov, Volodymyr Tkachenko, Alex Mazur, Danyil Tretiakov</Authors>
     <Copyright>Conceptual Vision Consulting LLC. 2017-2020</Copyright>
     <Description>Data processing and persistence components for Pip.Services in .NET</Description>
@@ -21,7 +21,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="PipServices3.Commons" Version="3.1.1" />
-    <PackageReference Include="PipServices3.Components" Version="3.1.1" />
+    <PackageReference Include="PipServices3.Commons" Version="3.1.2" />
+    <PackageReference Include="PipServices3.Components" Version="3.2.1" />
   </ItemGroup>
 </Project>
