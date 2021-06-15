@@ -11,7 +11,6 @@ namespace PipServices3.Data
     /// <typeparam name="K"></typeparam>
     public interface IGetter<T, in K>
         where T : IIdentifiable<K>
-        where K : class
     {
         /// <summary>
         /// Gets a data items by its unique id.
