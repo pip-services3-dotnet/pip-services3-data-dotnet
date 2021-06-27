@@ -93,16 +93,16 @@ class MyMemoryPersistence : IdentifiableMemoryPersistence<MyObject, string>
         return await base.GetPageByFilterAsync(correlationId, this.ComposeFilter(filter), paging).Result;
     }
 
-    public MyObjectGetOneByKey(string correlationId, List<MyObject> item, string key)
+    public Task<MyObject> GetOneByKey(string correlationId, List<MyObject> item, string key)
     {
-        List<MyObject> items = item.Find(x => x.key == key);
+        var item = await this._items.FindAsync(x => x.key == key);
 
         if (item.Count > 0)
             this._logger.Trace(correlationId, "Found object by key=%s", key);
         else
             this._logger.Trace(correlationId, "Cannot find by key=%s", key);
 
-
+        item = this.ConvertToPublic(item);
         return item;
     }
 }
