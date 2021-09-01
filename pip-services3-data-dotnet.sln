@@ -1,15 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "src", "src\src.csproj", "{45910474-F08A-484C-A762-C770D32C5D04}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31613.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "src", "src\src.csproj", "{45910474-F08A-484C-A762-C770D32C5D04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test", "test\test.csproj", "{01FB3BF2-1CA3-4AAA-81F2-0E6BED36845F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "test", "test\test.csproj", "{01FB3BF2-1CA3-4AAA-81F2-0E6BED36845F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A07F9751-A933-4233-B40D-38E1957D6007}"
-ProjectSection(SolutionItems) = preProject
-	CHANGELOG.md = CHANGELOG.md
-	component.json = component.json
-EndProjectSection
+	ProjectSection(SolutionItems) = preProject
+		CHANGELOG.md = CHANGELOG.md
+		component.json = component.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,5 +27,11 @@ Global
 		{01FB3BF2-1CA3-4AAA-81F2-0E6BED36845F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01FB3BF2-1CA3-4AAA-81F2-0E6BED36845F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01FB3BF2-1CA3-4AAA-81F2-0E6BED36845F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C0AE6542-592A-4BBA-87FA-771B7662E53F}
 	EndGlobalSection
 EndGlobal

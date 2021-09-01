@@ -1,5 +1,10 @@
 # <img src="https://github.com/pip-services/pip-services/raw/master/design/Logo.png" alt="Pip.Services Logo" style="max-width:30%"> <br/> Data processing and persistence components for .NET Changelog
 
+## <a name="3.4.0"></a> 3.4.0 (2021-09-01)
+
+### Breaking Changes
+* Migrate to .NET Core 5.0
+
 ## <a name="3.3.1"></a> 3.3.1 (2021-06-15) 
 
 ### Features
