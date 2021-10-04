@@ -214,6 +214,45 @@ namespace PipServices3.Data.Persistence
         }
 
         /// <summary>
+        /// Updates only few selected fields in a data item.
+        /// </summary>
+        /// <param name="correlation_id">(optional) transaction id to trace execution through call chain.</param>
+        /// <param name="id">an id of data item to be updated.</param>
+        /// <param name="data">a map with fields to be updated.</param>
+        /// <returns>updated item.</returns>
+        public async Task<T> UpdatePartially(string correlationId, K id, AnyValueMap data)
+        {
+            _lock.EnterWriteLock();
+
+            object item;
+
+            try
+            {
+                var index = _items.FindIndex(x => x.Id.Equals(id));
+
+                if (index < 0)
+                    return default(T);
+
+                item = _items[index];
+
+                var properties = ObjectReader.GetProperties(data.GetAsObject());
+                ObjectWriter.SetProperties(item, properties);
+
+                _items[index] = (T)item;
+
+                _logger.Trace(correlationId, "Partially updated item {0}", id);
+            }
+            finally
+            {
+                _lock.ExitWriteLock();
+            }
+
+            await SaveAsync(correlationId);
+
+            return (T)item;
+        }
+
+        /// <summary>
         /// Deleted a data item by it's unique id.
         /// </summary>
         /// <param name="correlationId">(optional) transaction id to trace execution through call chain.</param>
