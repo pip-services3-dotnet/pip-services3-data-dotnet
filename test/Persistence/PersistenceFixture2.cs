@@ -139,7 +139,7 @@ namespace PipServices3.Data.Persistence
             Assert.Equal(dummy1.Content, dummy.Content);
 
             // Update partially the dummy
-            dummy = await _persistence.UpdatePartially(null, dummy1.Id, AnyValueMap.FromTuples(
+            dummy = await _persistence.UpdatePartiallyAsync(null, dummy1.Id, AnyValueMap.FromTuples(
                 "content", "Partially Updated Content 1"
             ));
 

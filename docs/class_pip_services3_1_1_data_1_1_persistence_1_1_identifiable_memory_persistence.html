@@ -107,6 +107,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8e241b274ed4ccbbc45b1d5e7d5d7dda"><td class="memItemLeft" align="right" valign="top">async Task&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pip_services3_1_1_data_1_1_persistence_1_1_identifiable_memory_persistence.html#a8e241b274ed4ccbbc45b1d5e7d5d7dda">UpdateAsync</a> (string correlationId, T item)</td></tr>
 <tr class="memdesc:a8e241b274ed4ccbbc45b1d5e7d5d7dda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates a data item.  <a href="#a8e241b274ed4ccbbc45b1d5e7d5d7dda">More...</a><br /></td></tr>
 <tr class="separator:a8e241b274ed4ccbbc45b1d5e7d5d7dda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2e2d0e881d7501acb27ae9809e09e0e"><td class="memItemLeft" align="right" valign="top">async Task&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pip_services3_1_1_data_1_1_persistence_1_1_identifiable_memory_persistence.html#aa2e2d0e881d7501acb27ae9809e09e0e">UpdatePartiallyAsync</a> (string correlationId, K id, AnyValueMap data)</td></tr>
+<tr class="memdesc:aa2e2d0e881d7501acb27ae9809e09e0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates only few selected fields in a data item.  <a href="#aa2e2d0e881d7501acb27ae9809e09e0e">More...</a><br /></td></tr>
+<tr class="separator:aa2e2d0e881d7501acb27ae9809e09e0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a244b154fc1a3e3c9ee7e158645667278"><td class="memItemLeft" align="right" valign="top">async Task&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pip_services3_1_1_data_1_1_persistence_1_1_identifiable_memory_persistence.html#a244b154fc1a3e3c9ee7e158645667278">DeleteByIdAsync</a> (string correlationId, K id)</td></tr>
 <tr class="memdesc:a244b154fc1a3e3c9ee7e158645667278"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deleted a data item by it's unique id.  <a href="#a244b154fc1a3e3c9ee7e158645667278">More...</a><br /></td></tr>
 <tr class="separator:a244b154fc1a3e3c9ee7e158645667278"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -562,6 +565,51 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>_opened</b> = false</
   <table class="params">
     <tr><td class="paramname">correlationId</td><td>(optional) transaction id to trace execution through call chain.</td></tr>
     <tr><td class="paramname">item</td><td>an item to be updated.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>updated item.</dd></dl>
+
+</div>
+</div>
+<a id="aa2e2d0e881d7501acb27ae9809e09e0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2e2d0e881d7501acb27ae9809e09e0e">&#9670;&nbsp;</a></span>UpdatePartiallyAsync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;T&gt; <a class="el" href="class_pip_services3_1_1_data_1_1_persistence_1_1_identifiable_memory_persistence.html">PipServices3.Data.Persistence.IdentifiableMemoryPersistence</a>&lt; T, K &gt;.UpdatePartiallyAsync </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>correlationId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">K&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">AnyValueMap&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Updates only few selected fields in a data item. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">correlation_id</td><td>(optional) transaction id to trace execution through call chain.</td></tr>
+    <tr><td class="paramname">id</td><td>an id of data item to be updated.</td></tr>
+    <tr><td class="paramname">data</td><td>a map with fields to be updated.</td></tr>
   </table>
   </dd>
 </dl>

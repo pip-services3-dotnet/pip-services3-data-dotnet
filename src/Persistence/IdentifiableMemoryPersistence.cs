@@ -220,7 +220,7 @@ namespace PipServices3.Data.Persistence
         /// <param name="id">an id of data item to be updated.</param>
         /// <param name="data">a map with fields to be updated.</param>
         /// <returns>updated item.</returns>
-        public async Task<T> UpdatePartially(string correlationId, K id, AnyValueMap data)
+        public async Task<T> UpdatePartiallyAsync(string correlationId, K id, AnyValueMap data)
         {
             _lock.EnterWriteLock();
 

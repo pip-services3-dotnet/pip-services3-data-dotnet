@@ -24,6 +24,6 @@ namespace PipServices3.Data.Persistence
         Task<object> GetOneByIdAsync(string correlationId, string id, ProjectionParams projection);
         Task<Dummy> SetAsync(string correlationId, Dummy item);
         Task<Dummy> UpdateAsync(string correlationId, Dummy item);
-        Task<Dummy> UpdatePartially(string correlationId, string id, AnyValueMap data);
+        Task<Dummy> UpdatePartiallyAsync(string correlationId, string id, AnyValueMap data);
     }
 }
