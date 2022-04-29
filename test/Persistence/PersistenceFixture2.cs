@@ -138,6 +138,16 @@ namespace PipServices3.Data.Persistence
             Assert.Equal(dummy1.Key, dummy.Key);
             Assert.Equal(dummy1.Content, dummy.Content);
 
+            // Update partially the dummy
+            dummy = await _persistence.UpdatePartiallyAsync(null, dummy1.Id, AnyValueMap.FromTuples(
+                "content", "Partially Updated Content 1"
+            ));
+
+            Assert.NotNull(dummy);
+            Assert.Equal(dummy1.Id, dummy.Id);
+            Assert.Equal(dummy1.Key, dummy.Key);
+            Assert.Equal("Partially Updated Content 1", dummy.Content);
+
             // Delete the dummy
             await _persistence.DeleteByIdAsync(null, dummy1.Id);
 
