@@ -1,5 +1,10 @@
 # <img src="https://github.com/pip-services/pip-services/raw/master/design/Logo.png" alt="Pip.Services Logo" style="max-width:30%"> <br/> Data processing and persistence components for .NET Changelog
 
+## <a name="3.6.0"></a> 3.6.0 (2023-12-15)
+
+### Breaking Changes
+* Migrate to .NET 8.0
+
 ## <a name="3.5.0"></a> 3.5.0 (2022-08-04)
 
 ### Breaking Changes
